@@ -14,6 +14,7 @@ from billet.views import (
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
+    path('accounts/', include('allauth.urls')),
     path('', billet_list),
     path('billets/<pk>/', billet_retrieve),
     path('billets/<pk>/edit/', billet_update),
