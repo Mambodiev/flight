@@ -22,11 +22,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-
+    
+    "webpack_boilerplate",
     'widget_tweaks',
-    "tailwind",
-    "theme",
-    "django_browser_reload",
+    # "tailwind",
+    # "theme",
+    # "django_browser_reload",
 
     'allauth',
     'allauth.account',
@@ -40,7 +41,7 @@ SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
+    # "django_browser_reload.middleware.BrowserReloadMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -60,7 +61,8 @@ AUTHENTICATION_BACKENDS = [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],
+        # 'DIRS': [BASE_DIR / "templates"],
+        'DIRS': [str(BASE_DIR.joinpath('templates'))], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -108,13 +110,24 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+
+# STATICFILES_DIRS = ( 
+#     os.path.join(BASE_DIR, 'static'),
+# )
+
+
+STATICFILES_DIRS = [
+    BASE_DIR.joinpath("frontend/build"),
+]
+
+WEBPACK_LOADER = {
+    "MANIFEST_FILE": BASE_DIR.joinpath("frontend/build/manifest.json"),
+}
+
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-TAILWIND_APP_NAME = 'theme'
+# TAILWIND_APP_NAME = 'theme'
 
 # django allauth
 ACCOUNT_FORMS = {

@@ -1,6 +1,7 @@
 {% load static i18n %}
-{% load tailwind_tags %}
-{% load django_browser_reload %}
+{% comment %} {% load tailwind_tags %} {% endcomment %}
+{% comment %} {% load django_browser_reload %} {% endcomment %}
+{% load webpack_loader static %} 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +14,10 @@
     <meta name="author" content="Matthew Freire">
     <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
     {% block css %}
-     {% tailwind_css %}
+     {% comment %} {% tailwind_css %} {% endcomment %}
+
+    {% stylesheet_pack 'index' %} <!-- new, referring to index.css --> 
+    {% javascript_pack 'index' attrs='defer' %} <!-- new, referring to index.js -->
     {% endblock %}
   </head>
 
@@ -34,7 +38,7 @@
     {% include 'footer.html' %}
     {% block javascript %}
     {% endblock javascript %}
-    {% django_browser_reload_script %}
+    {% comment %} {% django_browser_reload_script %} {% endcomment %}
 
   </body>
 </html>
