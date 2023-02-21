@@ -33,6 +33,9 @@ python3 manage.py runserver
 </div>
 
 
+<!-- pip freeze > requirements.txt
+ -->
+
 
 source env/bin/activate
 python3 manage.py runserver 
